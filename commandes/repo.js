@@ -1,15 +1,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
+
 const { zokou } = require("../framework/zokou");
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-zokou({ nomCom: "repo", catégorie:"Général", reaction: "💥", nomFichier: __filename }, async (dest, zk, commandeOptions) => {
-  const githubRepo = ' https://github.com/mrblackkillersy-cmd/---';
-  const img = 'https://files.catbox.moe/rqlfwv.jpg';
+zokou(
+  { nomCom: "repo", catégorie: "Général", reaction: "💥", nomFichier: __filename },
+  async (dest, zk, commandeOptions) => {
 
-  try {
-    const response = await fetch(githubRepo);
-    const data = await response.json();
+    // ⚠️ BADILISHA HAPA KAMA REPO YAKO NI NYINGINE
+    const githubRepo = 'https://github.com/mrblackkillersy-cmd/---';
+    const img = 'https://files.catbox.moe/rqlfwv.jpg';
 
-    if (data) {
+    try {
+      const response = await fetch(githubRepo);
+      const data = await response.json();
+
+      if (!data || data.message) {
+        return zk.sendMessage(dest, { text: "❌ Repo haijapatikana au API limit imefika" });
+      }
+
       const repoInfo = {
         stars: data.stargazers_count,
         forks: data.forks_count,
@@ -18,7 +27,6 @@ zokou({ nomCom: "repo", catégorie:"Général", reaction: "💥", nomFichier: __
       };
 
       const releaseDate = new Date(data.created_at).toLocaleDateString('en-GB');
-      const lastUpdateDate = new Date(data.updated_at).toLocaleDateString('en-GB');
 
       const gitdata = `*hellow whatsaap user
 this is* *𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻.*\n
@@ -54,7 +62,7 @@ this is* *𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻.*\n
 ╔═════════════════════╗
 ║ 👨‍💻 𝗢𝗪𝗡𝗘𝗥
 ╠═════════════════════╣
-║ 👉 𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻
+║ 👉 ${repoInfo.owner}
 ╚═════════════════════╝
 ╔═════════════════════╗
 ║ 🎭 𝗧𝗛𝗘𝗠𝗘
@@ -64,13 +72,16 @@ this is* *𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻.*\n
 ━━━━━━━━━━━━━━━━━━━━━━━
 🥀 NO ONE IS SPECIAL!
 ━━━━━━━━━━━━━━━━━━━━━━━
-✨ 𝗠𝗔𝗗𝗘 𝗪𝗜𝗧𝗛 𝗠𝗥 𝗕𝗟𝗔𝗖𝗞 𝗞𝗜𝗟𝗟𝗘𝗥 ✓*`;
+✨ 𝗠𝗔𝗗𝗘 𝗪𝗜𝗧𝗛 𝗠𝗥 𝗕𝗟𝗔𝗖𝗞 𝗞𝗜𝗟𝗟𝗘𝗥 ✓`;
 
-      await zk.sendMessage(dest, { image: { url: img }, caption: gitdata });
-    } else {
-      console.log("Could not fetch data");
+      await zk.sendMessage(dest, {
+        image: { url: img },
+        caption: gitdata
+      });
+
+    } catch (error) {
+      console.log("Error fetching data:", error);
+      zk.sendMessage(dest, { text: "❌ Error fetching repository data" });
     }
-  } catch (error) {
-    console.log("Error fetching data:", error);
   }
-});
+);
