@@ -1,87 +1,79 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 const { zokou } = require("../framework/zokou");
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 zokou(
   { nomCom: "repo", catégorie: "Général", reaction: "💥", nomFichier: __filename },
-  async (dest, zk, commandeOptions) => {
+  async (dest, zk) => {
 
-    // ⚠️ BADILISHA HAPA KAMA REPO YAKO NI NYINGINE
-    const githubRepo = 'https://github.com/mrblackkillersy-cmd/---';
-    const img = 'https://files.catbox.moe/rqlfwv.jpg';
+    const githubRepo = "https://api.github.com/repos/mrblackkillersy-cmd/---";
+    const img = "https://files.catbox.moe/rqlfwv.jpg";
 
     try {
       const response = await fetch(githubRepo);
       const data = await response.json();
 
       if (!data || data.message) {
-        return zk.sendMessage(dest, { text: "❌ Repo haijapatikana au API limit imefika" });
+        return zk.sendMessage(dest, {
+          text: "❌ Repo haijapatikana au GitHub API limit imefika"
+        });
       }
 
-      const repoInfo = {
-        stars: data.stargazers_count,
-        forks: data.forks_count,
-        lastUpdate: data.updated_at,
-        owner: data.owner.login,
-      };
+      const releaseDate = new Date(data.created_at).toLocaleDateString("en-GB");
 
-      const releaseDate = new Date(data.created_at).toLocaleDateString('en-GB');
+      const gitdata = `*Hello WhatsApp user*
+This is *𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻*\n
 
-      const gitdata = `*hellow whatsaap user
-this is* *𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻.*\n
 ⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷
       💀 𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻 💀
 ⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸
 
 ╔═════════════════════╗
-║ 🔗 𝗥𝗘𝗣𝗢𝗦𝗜𝗧𝗢𝗥𝗬
+║ 🔗 REPOSITORY
 ╠═════════════════════╣
 ║ 👉 ${data.html_url}
 ╚═════════════════════╝
 ╔═════════════════════╗
-║ 🌟 𝗦𝗧𝗔𝗥𝗦
+║ 🌟 STARS
 ╠═════════════════════╣
-║ 👉 ${repoInfo.stars}
+║ 👉 ${data.stargazers_count}
 ╚═════════════════════╝
 ╔═════════════════════╗
-║ 🍴 𝗙𝗢𝗥𝗞𝗦
+║ 🍴 FORKS
 ╠═════════════════════╣
-║ 👉 ${repoInfo.forks}
+║ 👉 ${data.forks_count}
 ╚═════════════════════╝
 ╔═════════════════════╗
-║ ⌛ 𝗥𝗘𝗟𝗘𝗔𝗦𝗘 𝗗𝗔𝗧𝗘
+║ ⌛ RELEASE DATE
 ╠═════════════════════╣
 ║ 👉 ${releaseDate}
 ╚═════════════════════╝
 ╔═════════════════════╗
-║ 🕐 𝗟𝗔𝗦𝗧 𝗨𝗣𝗗𝗔𝗧𝗘
+║ 🕐 LAST UPDATE
 ╠═════════════════════╣
-║ 👉 ${repoInfo.lastUpdate}
+║ 👉 ${data.updated_at}
 ╚═════════════════════╝
 ╔═════════════════════╗
-║ 👨‍💻 𝗢𝗪𝗡𝗘𝗥
+║ 👨‍💻 OWNER
 ╠═════════════════════╣
-║ 👉 ${repoInfo.owner}
+║ 👉 ${data.owner.login}
 ╚═════════════════════╝
-╔═════════════════════╗
-║ 🎭 𝗧𝗛𝗘𝗠𝗘
-╠═════════════════════╣
-║ 👉 𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻
-╚═════════════════════╝
+
 ━━━━━━━━━━━━━━━━━━━━━━━
 🥀 NO ONE IS SPECIAL!
 ━━━━━━━━━━━━━━━━━━━━━━━
-✨ 𝗠𝗔𝗗𝗘 𝗪𝗜𝗧𝗛 𝗠𝗥 𝗕𝗟𝗔𝗖𝗞 𝗞𝗜𝗟𝗟𝗘𝗥 ✓`;
+✨ MADE WITH MR BLACK KILLER ✓`;
 
       await zk.sendMessage(dest, {
         image: { url: img },
         caption: gitdata
       });
 
-    } catch (error) {
-      console.log("Error fetching data:", error);
-      zk.sendMessage(dest, { text: "❌ Error fetching repository data" });
+    } catch (err) {
+      console.log(err);
+      zk.sendMessage(dest, { text: "❌ Error fetching GitHub repo" });
     }
   }
 );
