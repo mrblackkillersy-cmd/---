@@ -6,7 +6,7 @@ async function handleSettingCommand(commandeOptions, settingName, settingKey, re
   const { repondre, arg, ms, superUser } = commandeOptions;
   
   if (!superUser) {
-    return repondre(`*This command is restricted to the bot owner or Goodchild Xmd owner.*`);
+    return repondre(`*This command is restricted to the bot owner or BLACK KILLER-XMD owner.*`);
   }
 
   if (!arg[0]) {
@@ -103,7 +103,7 @@ etatCommands.forEach(cmd => {
     const { repondre, arg, ms, superUser } = commandeOptions;
     
     if (!superUser) {
-      return repondre("*This command is restricted to the bot owner or Goodchild Xmd owner.*");
+      return repondre("*This command is restricted to the bot owner or BLACK KILLER-XMD owner.*");
     }
 
     if (!arg[0]) {
