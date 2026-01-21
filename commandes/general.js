@@ -90,10 +90,43 @@ else {
 }
 });
 
-zokou({ nomCom: "support", categorie: "General" }, async (dest, zk, commandeOptions) => {
-  const { ms, repondre, auteurMessage, } = commandeOptions; 
- 
-  repondre("THANK YOU FOR CHOOSING 𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻 , HERE ARE OUR SUPPORTIVE LINKS\n\n ☉ CHANNEL 1 LINK IS HERE ☉ \n\n❒⁠⁠⁠⁠[https://whatsapp.com/channel/0029VbAhAOJISTkRkIw3Sy1D] \n\n ☉ CHANNEL 2 LINK IS HERE ☉\n\n❒⁠⁠⁠⁠[https://whatsapp.com/channel/0029VbAhAOJISTkRkIw3Sy1D] \n\n ☉GROUP LINK IS HERE ☉\n\n❒⁠⁠⁠⁠[https://chat.whatsapp.com/GgvYBezrmKLKJTllr7dD76] \n\n\n𝙲𝚛𝚎𝚊𝚝𝚎𝚍 𝙱𝚢 𝗠𝗥 𝗕𝗟𝗔𝗖𝗞 𝗞𝗜𝗟𝗟𝗘𝗥") 
-  await zk.sendMessage(auteurMessage,{text : `THANK YOU FOR CHOOSING 𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻 ,MAKE SURE YOU FOLLOW THESE LINKS. `},{quoted :ms})
+zokou(
+  { nomCom: "support", categorie: "General", reaction: "🛰️" },
+  async (dest, zk, commandeOptions) => {
+    const { ms, repondre } = commandeOptions;
 
-})
+    const supportMessage = `
+⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷
+✨ POWERED BY 𝔹𝕃𝔸ℂ𝕂ℍ𝔸ℂ𝕂𝔼ℝ𝕊 TEAM ✨
+⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸⫸
+
+╔════════════════▣
+┊✺┌── ❐ 💀 THIS ARE 𝔹𝕃𝔸ℂ𝕂ℍ𝔸ℂ𝕂𝔼ℝ𝕊 LINKS ❐ ──⊷
+╠✤│▸ *CHANNEL*
+╠✤│▸ *GROUP*
+┊✺└────••••────⊷
+╚════════════════▣
+
+╔════════════════▣
+┊✺┌── ❐ 🛰️ OFFICIAL CHANNEL ❐ ──⊷
+╠✤│▸ https://whatsapp.com/channel/0029VbAhAOJISTkRkIw3Sy1D
+┊✺└────••••────⊷
+╚════════════════▣
+
+╔════════════════▣
+┊✺┌── ❐ ⚡ OFFICIAL GROUP ❐ ──⊷
+╠✤│▸ https://chat.whatsapp.com/GgvYBezrmKLKJTllr7dD76
+┊✺└────••••────⊷
+╚════════════════▣
+
+╔════════════════▣
+┊✺┌── ❐ ✅ MAKE SURE YOU HAVE JOINED ❐ ──⊷
+┊✺└────••••────⊷
+╚════════════════▣
+
+⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷⫷
+`;
+
+    await repondre(supportMessage);
+  }
+);
