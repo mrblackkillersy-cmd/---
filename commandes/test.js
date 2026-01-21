@@ -18,7 +18,7 @@ zokou({
   let d = "i'm a WhatsApp multi-device bot created by *𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻*";
   let varmess = z + d;
 
-  let img = 'https://files.catbox.moe/dxvvk7.jpg';
+  let img = 'https://files.catbox.moe/rqlfwv.jpg';
 
   await zk.sendMessage(
     dest,
