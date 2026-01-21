@@ -16,9 +16,9 @@ zokou({
   try {
     if (!id || !text || text.trim().length === 0) {
       return await repondre(
-        `\nExample : ${prefix}fancy 10 Goodchild-Xmd\n` +
+        `\nExample : ${prefix}fancy 10 BLACK-KILLER-XMD\n` +
         String.fromCharCode(8206).repeat(4001) +
-        fancy.list('GOODCHILD-XMD')
+        fancy.list('BLACK-KILLER-XMD')
       );
     }
 
