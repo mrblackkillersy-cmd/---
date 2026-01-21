@@ -42,7 +42,7 @@
      "BOT_MENU_LINKS" : {
     
       "description":"add one or many link for your bot menu  ; eg : url1,url2,url3.....",
-      "value":"https://files.catbox.moe/idsj9o.jpg",
+      "value":"https://files.catbox.moe/rqlfwv.jpg",
       "required":false
        
      },
@@ -53,7 +53,7 @@
       "required": true 
     }
 	,
-    "HEROKU_APY_KEY": {
+    "HEROKU_API_KEY": {
     "description": "insert your heroku api-key (this is optionnal)",
      "required" :true
     },
