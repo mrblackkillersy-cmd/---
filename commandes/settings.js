@@ -26,7 +26,7 @@ zokou({
       `• *${s.PREFIXE}settings typing [on/off]*\n` +
       `• *${s.PREFIXE}settings recording [on/off]*\n` +
       `• *${s.PREFIXE}settings mode [private/public]*\n\n` +
-      `✅ Done by goodchild williamz`
+      `✅ Done by 𝔹𝕃𝔸ℂ𝕂 𝕂𝕀𝕃𝕃𝔼ℝ-𝕏𝕄𝔻`
     );
   }
 
